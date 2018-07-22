@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="IT菜鸟">
 <meta property="og:description" content="数据库分享总结数据库表设计和查询的原则：存的少；取得少（包括频度少） 存储数据类型的选择决定数据的膨胀速度    1、业务设计时考虑    2、影响存储空间、io开销、内存    3、主键int vs bigint(4 bytes vs 8bytes)    4、bigint类型值的范围更大，不太适合做主键    5、每个second index 会包含主键的值    6、second index">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-07-22T05:33:20.621Z">
+<meta property="og:updated_time" content="2018-07-22T05:41:18.352Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据库小结">
 <meta name="twitter:description" content="数据库分享总结数据库表设计和查询的原则：存的少；取得少（包括频度少） 存储数据类型的选择决定数据的膨胀速度    1、业务设计时考虑    2、影响存储空间、io开销、内存    3、主键int vs bigint(4 bytes vs 8bytes)    4、bigint类型值的范围更大，不太适合做主键    5、每个second index 会包含主键的值    6、second index">
@@ -96,9 +96,9 @@
 <p>过期的数据是否该一直保存？<br>    1、过期数据指的是过了业务实效期的数据<br>    2、过期数据的问题<br>    3、占据空间，影响DML性能，索引性能（查询需要添加多余查询条件）<br>    4、占用备份空间，恢复时恢复时间长；同时也会影响磁盘的使用效率</p>
 <p>备份策略：周一全备，周二做增备</p>
 <p>多余数据解决方法<br>    1、对于逻辑删除的大量数据，在进行业务评估后清理<br>    2、对于不在业务处理期内的数据，进行归档并清理<br>    3、业务模块 下线后完成数据库清理工作</p>
-<p>cold数据和warm数据的区分<br>    如何区分？以减少数据量</p>
-<p>注意不要方法用户的数据需求<br>    对数据库的影响很大，数据量很大</p>
-<p>SQL编写规范<br>    1、SQL查询只查询需要的字段，而不是select *<br>    2、避免不必要的join操作<br>    3、避免代码逻辑错误导致的多次重复查询</p>
+<p>cold数据和warm数据的区分<br>    如何区分？以减少数据量</p>
+<p>注意不要方法用户的数据需求<br>    对数据库的影响很大，数据量很大</p>
+<p>SQL编写规范<br>    1、SQL查询只查询需要的字段，而不是select *<br>    2、避免不必要的join操作<br>    3、避免代码逻辑错误导致的多次重复查询</p>
 <p>影响数据库性能的一些案例<br>1．<br>    1)避免查询条件由代码循环生成<br>    2)避免SQL的长度和频度由传入的条件决定<br>    带来的问题<br>    sql性能低，是范围查询<br>    记录日志开销大<br>解决方法<br>    业务设计时考虑控制<br>    代码循环时需要对传入参数的长度有所控制<br>2.<br>    数据分布的不均匀会导致sql效率问题<br>    not null操作不会通过索引查询<br>    避免sql语句发生隐式转换，即数据库中为varchar，查询为int，发生隐式转换</p>
 <p>隐式转换防止方法</p>
 <p>注意事项：<br>    1、插入大量数据使用bulk insert,而不是一条insert一句<br>    2、ddl语句涉及到单个表的<br>    3、auto_increament一定要去掉<br>    4、不建议由开发建立索引，一般由DBA建立<br>    5、防止ddl、dml混淆<br>    6、防止中文乱码<br>    7、sql语句中不能出现集合函数，如count,distinct,sum等；不使用join<br>    8、避免使用自定义函数，外键（严重禁止，由业务保证完整性），数学运算，存储过程，触发器，视图</p>
