@@ -5,18 +5,19 @@
   
 
   
-  <title>S&amp;J Castle</title>
+  <title>数据库小结 | S&amp;J Castle</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Record my life">
-<meta property="og:type" content="website">
-<meta property="og:title" content="S&amp;J Castle">
-<meta property="og:url" content="http://shanjiawang.github.io/index.html">
+  <meta name="description" content="#数据库分享总结数据库表设计和查询的原则：存的少；取得少（包括频度少） ##存储数据类型的选择决定数据的膨胀速度    1、业务设计时考虑    2、影响存储空间、io开销、内存    3、主键int vs bigint(4 bytes vs 8bytes)    4、bigint类型值的范围更大，不太适合做主键    5、每个second index 会包含主键的值    6、second in">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据库小结">
+<meta property="og:url" content="http://shanjiawang.github.io/2018/07/01/数据库小结/index.html">
 <meta property="og:site_name" content="S&amp;J Castle">
-<meta property="og:description" content="Record my life">
+<meta property="og:description" content="#数据库分享总结数据库表设计和查询的原则：存的少；取得少（包括频度少） ##存储数据类型的选择决定数据的膨胀速度    1、业务设计时考虑    2、影响存储空间、io开销、内存    3、主键int vs bigint(4 bytes vs 8bytes)    4、bigint类型值的范围更大，不太适合做主键    5、每个second index 会包含主键的值    6、second in">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-07-25T14:03:44.028Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="S&amp;J Castle">
-<meta name="twitter:description" content="Record my life">
+<meta name="twitter:title" content="数据库小结">
+<meta name="twitter:description" content="#数据库分享总结数据库表设计和查询的原则：存的少；取得少（包括频度少） ##存储数据类型的选择决定数据的膨胀速度    1、业务设计时考虑    2、影响存储空间、io开销、内存    3、主键int vs bigint(4 bytes vs 8bytes)    4、bigint类型值的范围更大，不太适合做主键    5、每个second index 会包含主键的值    6、second in">
   
     <link rel="alternate" href="/atom.xml" title="S&amp;J Castle" type="application/atom+xml">
   
@@ -67,61 +68,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-PRD设计小结" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/07/24/PRD设计小结/" class="article-date">
-  <time datetime="2018-07-24T13:41:41.000Z" itemprop="datePublished">2018-07-24</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/24/PRD设计小结/">PRD设计小结</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>实习了一段时间，接触了一些PRD的东西，记下来其中一些重要的点。</p>
-<p>#一、明确需求<br>把这个放在PRD撰写之前，一定要注意的：<strong>明确需求！明确需求！明确需求！</strong></p>
-<p>只有明确了需求才能在PRD撰写中事半功倍，不然，每天就要反复修改。<br>很多PM或者项目负责人对于需求可能有一个框架，但是这是不够的，一个项目的开发细节是十分关键的，需要有一套完成的需求，再加上细节补充，之后再去写PRD才是应该做的。</p>
-<p>在明确需求阶段，应该多讨论多沟通，因为一个项目会有开发、测试、运维、经理等多个角色，每个细化的子功能应当做好沟通，进而更好的总结下来。</p>
-<p>因为做的项目是一个针对公司内部的管理系统，所以在经济效益等方面考虑较少。</p>
-<p>#二、PRD主要组成：<br>1、概述<br>2、系统架构<br>3、模型建立<br>4、系统分析<br>5、接口分析<br>6、系统业务编码<br>7、现有系统影响分析<br>8、数据分析影响<br>9、非功能性分析<br>10、系统间关系和影响<br>11、附录（国家地区编码）</p>
-<p>#三、需求文档撰写主要针对部分是：<br>1、模型建立（也即表）<br>2、系统分析<br>3、接口分析</p>
-<p>#四、对于开发人员来说，开发过程中着重看接口分析部分。<br>接口分析组成：<br>1、页面<br>2、功能描述<br>3、服务使用方<br>4、限制条件<br>5、输入参数<br>6、输出参数<br>7、活动图<br>8、示例</p>
-<p>页面部分：<br>使用墨刀、Astah绘制页面原型</p>
-<p>功能描述：<br>针对接口主要功能的简要介绍</p>
-<p>服务使用方：<br>该产品接口研发针对人群</p>
-<p>限制条件：<br>一般是Restful接口和jcf接口</p>
-<p>输入参数：<br>即传入后端的参数，一般以表格形式，包括字段名称、字段编码、字段类型、是否必填、备注。</p>
-<p>输出参数：<br>后端执行后返回的结果，同样一般以表格形式，包括字段名称、字段编码、字段类型、是否必填、备注。<br>一般为字段返回码、结果描述、结果数据、记录数、消耗时间。</p>
-<p>活动图：<br>使用Visio等软件绘制活动图，也即从用户、前端、后台、数据库（mysql、redis）有层次的分割开，再将流程一步一步推进。</p>
-<p>示例：<br>一般是json格式返回。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://shanjiawang.github.io/2018/07/24/PRD设计小结/" data-id="cjk17b0uq0001fcc8z3ie26vx" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-数据库小结" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-数据库小结" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/07/01/数据库小结/" class="article-date">
   <time datetime="2018-07-01T05:32:29.000Z" itemprop="datePublished">2018-07-01</time>
@@ -134,8 +81,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/01/数据库小结/">数据库小结</a>
+    <h1 class="article-title" itemprop="name">
+      数据库小结
     </h1>
   
 
@@ -166,11 +113,23 @@
     </footer>
   </div>
   
-</article>
-
+    
+<nav id="article-nav">
+  
+    <a href="/2018/07/24/PRD设计小结/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          PRD设计小结
+        
+      </div>
+    </a>
+  
+  
+</nav>
 
   
-
+</article>
 
 </section>
         
