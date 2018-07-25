@@ -171,8 +171,16 @@
 <h2 id="SQL编写规范"><a href="#SQL编写规范" class="headerlink" title="SQL编写规范"></a>SQL编写规范</h2><pre><code>1、SQL查询只查询需要的字段，而不是select *
 2、避免不必要的join操作
 3、避免代码逻辑错误导致的多次重复查询
-</code></pre><h2 id="影响数据库性能的一些案例"><a href="#影响数据库性能的一些案例" class="headerlink" title="影响数据库性能的一些案例"></a>影响数据库性能的一些案例</h2><p>1．<br>    1)避免查询条件由代码循环生成<br>    2)避免SQL的长度和频度由传入的条件决定<br>    带来的问题<br>    sql性能低，是范围查询<br>    记录日志开销大<br>解决方法<br>    业务设计时考虑控制<br>    代码循环时需要对传入参数的长度有所控制<br>2.<br>    数据分布的不均匀会导致sql效率问题<br>    not null操作不会通过索引查询<br>    避免sql语句发生隐式转换，即数据库中为varchar，查询为int，发生隐式转换</p>
-<p>隐式转换防止方法</p>
+</code></pre><h2 id="影响数据库性能的一些案例"><a href="#影响数据库性能的一些案例" class="headerlink" title="影响数据库性能的一些案例"></a>影响数据库性能的一些案例</h2><h3 id="1．"><a href="#1．" class="headerlink" title="1．"></a>1．</h3><pre><code>1)避免查询条件由代码循环生成
+2)避免SQL的长度和频度由传入的条件决定
+带来的问题
+sql性能低，是范围查询
+记录日志开销大
+</code></pre><p>解决方法<br>    业务设计时考虑控制<br>    代码循环时需要对传入参数的长度有所控制</p>
+<h3 id="2"><a href="#2" class="headerlink" title="2."></a>2.</h3><pre><code>数据分布的不均匀会导致sql效率问题
+not null操作不会通过索引查询
+避免sql语句发生隐式转换，即数据库中为varchar，查询为int，发生隐式转换
+</code></pre><p>隐式转换防止方法</p>
 <h2 id="注意事项："><a href="#注意事项：" class="headerlink" title="注意事项："></a>注意事项：</h2><pre><code>1、插入大量数据使用bulk insert,而不是一条insert一句
 2、ddl语句涉及到单个表的
 3、auto_increament一定要去掉
