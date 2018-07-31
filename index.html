@@ -111,7 +111,50 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://shanjiawang.github.io/2018/07/24/PRD设计小结/" data-id="cjk2mceyt0001rwc8zh14m0ig" class="article-share-link">Share</a>
+      <a data-url="http://shanjiawang.github.io/2018/07/24/PRD设计小结/" data-id="cjk9rgztu0004f0c8g5xjoyfn" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-CentOS7基础配置" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/07/01/CentOS7基础配置/" class="article-date">
+  <time datetime="2018-07-01T13:47:55.000Z" itemprop="datePublished">2018-07-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/07/01/CentOS7基础配置/">CentOS7基础配置</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>CentOS安装配置小结</p>
+<h1 id="1-vmware安装minimal-centos时报错-etc-rc5-d-s99local-line"><a href="#1-vmware安装minimal-centos时报错-etc-rc5-d-s99local-line" class="headerlink" title="1.vmware安装minimal centos时报错/etc/rc5.d/s99local : line"></a>1.vmware安装minimal centos时报错/etc/rc5.d/s99local : line</h1><p>解决办法：<br>建立虚拟机 -&gt; 选择ISO -&gt; 开始安装<br>安装的时候先不设置iso文件，先建立虚拟机。建立虚拟机之后再选择ISO路劲，然后开始安装。</p>
+<h1 id="2-创建新用户"><a href="#2-创建新用户" class="headerlink" title="2.创建新用户"></a>2.创建新用户</h1><figure class="highlight vhdl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">加用户</span><br><span class="line">adduser linuxidc </span><br><span class="line">改密码</span><br><span class="line">passwd linuxidc</span><br><span class="line">找sudoers文件</span><br><span class="line">whereis sudoers</span><br><span class="line">修改文件权限</span><br><span class="line">chmod -v u+w /etc/sudoers</span><br><span class="line">编辑文件</span><br><span class="line">vim /etc/sudoers</span><br><span class="line">加入用户信息</span><br><span class="line">## Allow root <span class="keyword">to</span> run any commands anywher  </span><br><span class="line">root    <span class="keyword">ALL</span>=(<span class="keyword">ALL</span>)       <span class="keyword">ALL</span>  </span><br><span class="line">wsj  <span class="keyword">ALL</span>=(<span class="keyword">ALL</span>)       <span class="keyword">ALL</span>  #这个是新增的用户</span><br><span class="line">收回权限</span><br><span class="line">chmod -v u-w /etc/sudoers</span><br><span class="line">mode <span class="keyword">of</span> <span class="string">"/etc/sudoers"</span> changed from <span class="number">0640</span> (rw-r<span class="comment">-----) to 0440 (r--r-----)</span></span><br></pre></td></tr></table></figure>
+<h1 id="3-网络配置"><a href="#3-网络配置" class="headerlink" title="3.网络配置"></a>3.网络配置</h1><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/sysconfig/network-scripts/ifcfg-ens33</span><br><span class="line"></span><br><span class="line">TYPE=Ethernet       <span class="comment">#网卡类型</span></span><br><span class="line">DEVICE=eth0         <span class="comment">#网卡接口名称</span></span><br><span class="line">ONBOOT=yes          <span class="comment">#系统启动时是否自动加载</span></span><br><span class="line">BOOTPROTO=static    <span class="comment">#启用地址协议 --static:静态协议 --bootp协议 --dhcp协议</span></span><br><span class="line">IPADDR=192.168.75.11     <span class="comment">#网卡IP地址</span></span><br><span class="line">NETMASK=255.255.255.0    <span class="comment">#网卡网络地址</span></span><br><span class="line">GATEWAY=192.168.75.2     <span class="comment">#网卡网关地址</span></span><br><span class="line">DNS1=223.5.5.5	       	 <span class="comment">#网卡DNS地址</span></span><br><span class="line">HWADDR=00:0C:29:46:ED:72 <span class="comment">#网卡设备MAC地址</span></span><br><span class="line">BROADCAST=192.168.75.255  <span class="comment">#网卡广播地址</span></span><br><span class="line"></span><br><span class="line">e.g.</span><br><span class="line">TYPE=<span class="string">"Ethernet"</span></span><br><span class="line">PROXY_METHOD=<span class="string">"none"</span></span><br><span class="line">BROWSER_ONLY=<span class="string">"no"</span></span><br><span class="line">BOOTPROTO=<span class="string">"static"</span></span><br><span class="line">DEFROUTE=<span class="string">"yes"</span></span><br><span class="line">PEERDNS=<span class="string">"yes"</span></span><br><span class="line">PEERROUTES=<span class="string">"yes"</span></span><br><span class="line">IPV4_FAILURE_FATAL=<span class="string">"yes"</span></span><br><span class="line">IPV6INIT=<span class="string">"no"</span></span><br><span class="line">IPV6_AUTOCONF=<span class="string">"no"</span></span><br><span class="line">IPV6_DEFROUTE=<span class="string">"no"</span></span><br><span class="line">IPV6_FAILURE_FATAL=<span class="string">"no"</span></span><br><span class="line">IPV6_ADDR_GEN_MODE=<span class="string">"stable-privacy"</span></span><br><span class="line">NAME=<span class="string">"ens33"</span></span><br><span class="line">UUID=<span class="string">"dc16cf98-569a-41e3-a816-fe94eca4a32f"</span></span><br><span class="line">DEVICE=<span class="string">"ens33"</span></span><br><span class="line">ONBOOT=<span class="string">"yes"</span></span><br><span class="line">IPADDR=<span class="string">"192.168.75.101"</span></span><br><span class="line">NETMASK=<span class="string">"255.255.255.0"</span></span><br><span class="line">GATEWAY=<span class="string">"192.168.75.2"</span></span><br></pre></td></tr></table></figure>
+<h1 id="4-设置虚拟机的DNS"><a href="#4-设置虚拟机的DNS" class="headerlink" title="4.设置虚拟机的DNS"></a>4.设置虚拟机的DNS</h1><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/NetworkManager/NetworkManager.conf  修改该文件，在main部分添加 “<span class="attribute">dns</span>=none” 选项：</span><br><span class="line"></span><br><span class="line">[main]</span><br><span class="line"><span class="attribute">plugins</span>=ifcfg-rh</span><br><span class="line"><span class="attribute">dns</span>=none</span><br><span class="line"></span><br><span class="line">NetworkManager重新装载上面修改的配置</span><br><span class="line">systemctl restart NetworkManager.service</span><br><span class="line"></span><br><span class="line">vi /etc/resolv.conf</span><br><span class="line"></span><br><span class="line">Generated by NetworkManager</span><br><span class="line">search localdomain</span><br><span class="line">nameserver 192.168.75.2</span><br><span class="line">nameserver 223.5.5.5</span><br><span class="line">nameserver 8.8.8.8</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">重启虚拟机网卡</span><br><span class="line">service<span class="built_in"> network </span>restart</span><br></pre></td></tr></table></figure>
+<h1 id="5-ifconfig找不到"><a href="#5-ifconfig找不到" class="headerlink" title="5.ifconfig找不到"></a>5.ifconfig找不到</h1><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum <span class="keyword">install</span> net-tools</span><br></pre></td></tr></table></figure>
+<h1 id="6-修改hostname"><a href="#6-修改hostname" class="headerlink" title="6.修改hostname"></a>6.修改hostname</h1><figure class="highlight dsconfig"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">//永久性的修改主机名称，重启后能保持修改后的。</span><br><span class="line"><span class="string">hostnamectl </span><span class="built_in">set-hostname</span> <span class="string">xxx	</span></span><br><span class="line"> </span><br><span class="line">//删除<span class="string">hostname</span></span><br><span class="line"><span class="string">hostnamectl </span><span class="built_in">set-hostname</span> <span class="string">""</span></span><br><span class="line"><span class="string">hostnamectl </span><span class="built_in">set-hostname</span> <span class="string">""</span> <span class="built_in">--static</span></span><br><span class="line"><span class="built_in">hostnamectl</span> <span class="built_in">set-hostname</span> <span class="string">""</span> <span class="built_in">--pretty</span></span><br><span class="line"><span class="built_in"></span></span><br><span class="line"><span class="built_in">vim</span> /<span class="string">etc/</span><span class="string">hosts</span></span><br><span class="line"><span class="string">#</span><span class="string">127.</span>0.0.1   <span class="string">localhost </span><span class="string">localhost.</span><span class="string">localdomain </span><span class="string">localhost4 </span><span class="string">localhost4.</span><span class="string">localdomain4</span></span><br><span class="line"><span class="string">127.</span>0.0.1  <span class="string">node1</span></span><br><span class="line"><span class="string">#</span>::1         <span class="string">localhost </span><span class="string">localhost.</span><span class="string">localdomain </span><span class="string">localhost6 </span><span class="string">localhost6.</span><span class="string">localdomain6</span></span><br><span class="line"><span class="string">:</span>:1        <span class="string">node1</span></span><br></pre></td></tr></table></figure>
+<h1 id="7-安装wget"><a href="#7-安装wget" class="headerlink" title="7.安装wget"></a>7.安装wget</h1><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">查看是否安装：</span><br><span class="line">rpm -<span class="keyword">qa</span>|<span class="keyword">grep</span> <span class="string">"wget"</span></span><br><span class="line">安装wget：</span><br><span class="line">yum -<span class="keyword">y</span> install wget</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://shanjiawang.github.io/2018/07/01/CentOS7基础配置/" data-id="cjk9rgztm0001f0c8pksb3ebe" class="article-share-link">Share</a>
       
       
     </footer>
@@ -199,7 +242,7 @@ not null操作不会通过索引查询
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://shanjiawang.github.io/2018/06/20/数据库小结/" data-id="cjk2mceyx0003rwc830lqoxdg" class="article-share-link">Share</a>
+      <a data-url="http://shanjiawang.github.io/2018/06/20/数据库小结/" data-id="cjk9rgztq0003f0c8emdazk3t" class="article-share-link">Share</a>
       
       
     </footer>
@@ -266,7 +309,7 @@ not null操作不会通过索引查询
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://shanjiawang.github.io/2018/05/08/2018春招面试经验/" data-id="cjk2mceyl0000rwc8kz5v3j6g" class="article-share-link">Share</a>
+      <a data-url="http://shanjiawang.github.io/2018/05/08/2018春招面试经验/" data-id="cjk9rgzte0000f0c8bj7ocxch" class="article-share-link">Share</a>
       
       
     </footer>
@@ -305,7 +348,7 @@ not null操作不会通过索引查询
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://shanjiawang.github.io/2017/03/12/Python画图工具/" data-id="cjk2mceyx0002rwc8ei986bfw" class="article-share-link">Share</a>
+      <a data-url="http://shanjiawang.github.io/2017/03/12/Python画图工具/" data-id="cjk9rgztq0002f0c8prc1ni6z" class="article-share-link">Share</a>
       
       
     </footer>
@@ -347,6 +390,10 @@ not null操作不会通过索引查询
         
           <li>
             <a href="/2018/07/24/PRD设计小结/">PRD设计小结</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/01/CentOS7基础配置/">CentOS7基础配置</a>
           </li>
         
           <li>
