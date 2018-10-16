@@ -8,13 +8,14 @@
   <title>数据库小结 | S&amp;J Castle</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="数据库分享总结数据库表设计和查询的原则：存的少；取得少（包括频度少） 存储数据类型的选择决定数据的膨胀速度1、业务设计时考虑 2、影响存储空间、io开销、内存 3、主键int vs bigint(4 bytes vs 8bytes) 4、bigint类型值的范围更大，不太适合做主键 5、每个second index 会包含主键的值 6、second index指的是除主键外的索引 关于IP，时间的">
+<meta name="keywords" content="DB">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据库小结">
 <meta property="og:url" content="http://shanjiawang.github.io/2018/06/20/数据库小结/index.html">
 <meta property="og:site_name" content="S&amp;J Castle">
 <meta property="og:description" content="数据库分享总结数据库表设计和查询的原则：存的少；取得少（包括频度少） 存储数据类型的选择决定数据的膨胀速度1、业务设计时考虑 2、影响存储空间、io开销、内存 3、主键int vs bigint(4 bytes vs 8bytes) 4、bigint类型值的范围更大，不太适合做主键 5、每个second index 会包含主键的值 6、second index指的是除主键外的索引 关于IP，时间的">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-07-25T14:21:57.914Z">
+<meta property="og:updated_time" content="2018-10-16T01:46:06.597Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据库小结">
 <meta name="twitter:description" content="数据库分享总结数据库表设计和查询的原则：存的少；取得少（包括频度少） 存储数据类型的选择决定数据的膨胀速度1、业务设计时考虑 2、影响存储空间、io开销、内存 3、主键int vs bigint(4 bytes vs 8bytes) 4、bigint类型值的范围更大，不太适合做主键 5、每个second index 会包含主键的值 6、second index指的是除主键外的索引 关于IP，时间的">
@@ -54,6 +55,10 @@
         
           <a class="main-nav-link" href="/archives">Archives</a>
         
+          <a class="main-nav-link" href="/categories/">categories</a>
+        
+          <a class="main-nav-link" href="/tags/">tags</a>
+        
       </nav>
       <nav id="sub-nav">
         
@@ -74,6 +79,10 @@
   <time datetime="2018-06-20T05:32:29.000Z" itemprop="datePublished">2018-06-20</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/DataBase/">DataBase</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
@@ -146,9 +155,11 @@ not null操作不会通过索引查询
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://shanjiawang.github.io/2018/06/20/数据库小结/" data-id="cjnb13kwy0005h4c83t9olf8n" class="article-share-link">Share</a>
+      <a data-url="http://shanjiawang.github.io/2018/06/20/数据库小结/" data-id="cjnb1jzvn00082gc8odisu133" class="article-share-link">Share</a>
       
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DB/">DB</a></li></ul>
+
     </footer>
   </div>
   
@@ -180,12 +191,33 @@ not null操作不会通过索引查询
           <aside id="sidebar">
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/DataBase/">DataBase</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/PM/">PM</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/interviewExperience/">interviewExperience</a></li></ul>
+    </div>
+  </div>
+
 
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Amabri/">Amabri</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Anaconda/">Anaconda</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CentOS/">CentOS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DB/">DB</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PRD/">PRD</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/interview/">interview</a></li></ul>
+    </div>
+  </div>
+
 
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Amabri/" style="font-size: 10px;">Amabri</a> <a href="/tags/Anaconda/" style="font-size: 10px;">Anaconda</a> <a href="/tags/CentOS/" style="font-size: 10px;">CentOS</a> <a href="/tags/DB/" style="font-size: 10px;">DB</a> <a href="/tags/PRD/" style="font-size: 10px;">PRD</a> <a href="/tags/interview/" style="font-size: 20px;">interview</a>
+    </div>
+  </div>
+
   
     
   <div class="widget-wrap">
@@ -246,6 +278,10 @@ not null操作不会通过索引查询
     <a href="/" class="mobile-nav-link">Home</a>
   
     <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories/" class="mobile-nav-link">categories</a>
+  
+    <a href="/tags/" class="mobile-nav-link">tags</a>
   
 </nav>
     
