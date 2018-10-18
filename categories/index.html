@@ -64,10 +64,10 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.2">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.2">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/sjw.jpg?v=6.4.2">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.2">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/sjw.jpg?v=6.4.2">
 
 
   <link rel="mask-icon" href="/images/logo.svg?v=6.4.2" color="#222">
@@ -115,7 +115,7 @@
 <meta property="og:site_name" content="S&amp;J Castle">
 <meta property="og:description" content="Record my life">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-10-16T02:44:37.349Z">
+<meta property="og:updated_time" content="2018-10-18T02:53:34.103Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="categories">
 <meta name="twitter:description" content="Record my life">
@@ -139,7 +139,7 @@
   };
 </script>
 
-  <title>分类:  | S&J Castle</title>
+  <title>categories | S&J Castle</title>
   
 
 
@@ -186,7 +186,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -307,27 +307,75 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block category">
+  <div id="posts" class="posts-expand">
+    
+    
+    
+    <div class="post-block page">
+      <header class="post-header">
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1><small>分类</small>
-        </h1>
-      </div>
+<h1 class="post-title" itemprop="name headline">categories</h1>
+
+<div class="post-meta">
+  
+  
+
+
+
+</div>
+
+</header>
 
       
+      
+      
+      <div class="post-body">
+        
+        
+          <div class="category-all-page">
+            <div class="category-all-title">
+                
+                
+                  
+                    
+                  
+                
+                  
+                    
+                  
+                
+                  
+                    
+                  
+                
+                  
+                    
+                  
+                
+                  
+                    
+                  
+                
+                目前共计 5 个分类
+            </div>
+            <div class="category-all">
+              <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/DataBase/">DataBase</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PM/">PM</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/interviewExperience/">interviewExperience</a><span class="category-list-count">2</span></li></ul>
+            </div>
+          </div>
+        
+      </div>
+      
+      
+      
     </div>
+    
 
+
+
+    
+    
+    
   </div>
-  
-  
-  
-
-  
-
 
 
           </div>
@@ -382,7 +430,7 @@
                 
                 
                 <div class="site-state-item site-state-categories">
-                  
+                  <a href="/categories/index.html">
                     
                     
                       
@@ -397,7 +445,7 @@
                     
                     <span class="site-state-item-count">5</span>
                     <span class="site-state-item-name">分类</span>
-                  
+                  </a>
                 </div>
               
 
@@ -405,7 +453,7 @@
                 
                 
                 <div class="site-state-item site-state-tags">
-                  
+                  <a href="/tags/index.html">
                     
                     
                       
@@ -422,7 +470,7 @@
                     
                     <span class="site-state-item-count">6</span>
                     <span class="site-state-item-name">标签</span>
-                  
+                  </a>
                 </div>
               
             </nav>
@@ -542,9 +590,10 @@
 
 
 
+
+
   
-
-
+  
 
 
 
@@ -573,7 +622,12 @@
 
   
   
-    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
   
 
 
@@ -597,6 +651,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.2"></script>
+
+
 
   
 
@@ -627,6 +685,75 @@
 
 
   
+
+  
+  <script>
+    
+    function showTime(Counter) {
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url: { "$in": entries } }) })
+        .done(function ({ results }) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.url;
+            var time = item.time;
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function ({ responseJSON }) {
+          console.log("LeanCloud Counter Error: " + responseJSON.code + " " + responseJSON.error);
+        });
+    }
+    
+
+    $(function() {
+      $.get('https://app-router.leancloud.cn/2/route?appId=' + "Cs8i32iO2Jl6pAqvlPpw7sj0-gzGzoHsz")
+        .done(function ({ api_server }) {
+          var Counter = function (method, url, data) {
+            return $.ajax({
+              method: method,
+              url: `https://${api_server}/1.1${url}`,
+              headers: {
+                'X-LC-Id': "Cs8i32iO2Jl6pAqvlPpw7sj0-gzGzoHsz",
+                'X-LC-Key': "TcJ0Hr5ohj9vS8ziDqujFw7R",
+                'Content-Type': 'application/json',
+              },
+              data: data,
+            });
+          };
+          
+          if ($('.post-title-link').length >= 1) {
+            showTime(Counter);
+          }
+          
+        })
+    });
+  </script>
+
+
 
   
 
